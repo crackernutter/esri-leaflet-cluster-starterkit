@@ -28,10 +28,10 @@ This starter kit is deployment ready.  Follow the Getting Started instructions b
 
 2. Fork or clone the repo
 
-3. Use `npm install` to download all dependencies (Leaflet dependencies, plugins, jquery, bootstrap) and copy to your src folder
+3. Use `npm install` which downloads all dependencies (leaflet, plugins, jquery, bootstrap) and copies them to your src folder.
 
-4. Modify index.html and the main.js and app.css in src/app to build out your application.  At minimum, in app.js, lines 30 and 37 should contain the url of the feature layer you'd like diplayed, and line 58 should contain a list of fields that you do not wanted included in your popup.  
+4. Modify index.html and the main.js and app.css in src/app to build out your application.  At minimum, in app.js, lines 30 and 37 should contain the url of the feature layer you'd like diplayed, and line 58 should contain a list of fields that you do not want included in your feature popup.  
 
-5. Use `npm run build` to build minify your JavaScript and CSS, and copy necessary files to your dist folder 
+5. Use `npm run build` which builds and minifies your JavaScript and CSS, and copies necessary files to your dist folder 
 
-6. Deploy your app to any web server.  It's that easy.
+6. Deploy your dist folder to any web server.  It's that easy.
