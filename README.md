@@ -1,13 +1,14 @@
-# esri-leaflet-cluster-starterkit
+# Esri Leaflet Cluster Starterkit
 
 An excellent starter kit for those wishing to quickly deploy a lightning fast map displaying the contents of an ArcGIS for Server feature layer.  
 This build uses bower and npm to bundle a couple Leaflet plugins that enhance the application:
 
-1. [Zoomhome](https://github.com/torfsen/leaflet.zoomhome) - Places a home button inbetween the zoom slider to allow the user to reset the map to its initial extent
-2. [Esri Leaflet Geocoder](https://github.com/Esri/esri-leaflet-geocoder) - User can search and zoom to locations using Esri's public geocoder.  A developer can configure to include other search sources or locators.  
+1. [Zoomhome](https://github.com/torfsen/leaflet.zoomhome) - Adds a home button allowing a reset of the map to its initial extent
+2. [Esri Leaflet Geocoder](https://github.com/Esri/esri-leaflet-geocoder) - Allows for searching and zooming to locations using Esri's public geocoder.  A developer can configure to include other search sources or locators.  
 3. [Esri Leaflet Clustered Feature Layer](https://github.com/Esri/esri-leaflet-clustered-feature-layer) - Displays feature layer as clusters.  A necessary plugin if you have a large number of points or multiple records in the same location. 
 
-This starter kit is deployment ready.  Follow the Getting Started instructions below and have your map deployed in a matter of minutes.  
+This starter kit is deployment ready.  Follow the Getting Started instructions below and a simple map is ready in a matter of minutes
+.  
 ### Requirements
 * [node & npm](https://nodejs.org/)
 * [bower](http://bower.io/)
@@ -33,4 +34,4 @@ This starter kit is deployment ready.  Follow the Getting Started instructions b
 
 5. Use `npm run build` to build minify your JavaScript and CSS, and copy necessary files to your dist folder 
 
-6. Deploy your app to any web server.  It's that easy.  
+6. Deploy your app to any web server.  It's that easy.
