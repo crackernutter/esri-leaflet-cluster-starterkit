@@ -1,0 +1,20 @@
+{
+  "name": "esri-leaflet-cluster-zoomhome-geocoder",
+  "authors": [
+    "Jay Gregory <crackernutter@hotmail.com>"
+  ],
+  "description": "Simple build combining Esri Leaflet, and the marker clusterer, zoomhome, and geocoder plugins",
+  "main": "",
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "leaflet.zoomhome": "^0.1.0"
+  }
+}

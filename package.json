@@ -1,0 +1,42 @@
+{
+  "name": "esri-leaflet-cluster-zoomhome-geocoder",
+  "version": "1.0.0",
+  "description": "Simple build combining Esri Leaflet, and the marker clusterer, zoomhome, and geocoder plugins",
+  "main": "src/app/main.js",
+   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "bower install",
+    "install": "grunt devbuild",
+    "build": "grunt"
+  },
+  "keywords": [
+    "esri",
+    "leaflet",
+    "node",
+    "bower",
+	"zoomhome",
+	"geocoder",
+	"marker cluster"
+  ],
+  "author": "Jay Gregory",
+  "license": "ISC",
+  "dependencies": {
+    "grunt-cli": "^0.1.13"
+  },
+  "devDependencies": {
+    "bootstrap": "^3.3.6",
+    "esri-leaflet": "^2.0.0",
+    "esri-leaflet-clustered-feature-layer": "^2.0.0-beta.1",
+    "esri-leaflet-geocoder": "^2.1.0",
+    "font-awesome": "^4.6.1",
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.8.2",
+    "grunt-contrib-cssmin": "^0.14.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "jquery": "^2.2.3",
+    "leaflet": "^1.0.0-rc.1",
+    "leaflet.markercluster": "^1.0.0-rc.1.0",
+    "matchdep": "^1.0.0"
+  }
+}
