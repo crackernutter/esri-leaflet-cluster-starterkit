@@ -1,7 +1,8 @@
 # Esri Leaflet Cluster Starterkit
 
-An excellent starter kit for those wishing to quickly deploy a lightning fast map displaying the contents of an ArcGIS for Server feature layer.  
-This build uses bower and npm to bundle a couple Leaflet plugins that enhance the application:
+An excellent starter kit for those wishing to quickly deploy a lightning fast map displaying the contents of an ArcGIS for Server feature layer. 
+
+This kit uses bower, npm, and grunt to bundle a couple Leaflet plugins that enhance the application:
 
 1. [Zoomhome](https://github.com/torfsen/leaflet.zoomhome) - Adds a home button allowing a reset of the map to its initial extent
 2. [Esri Leaflet Geocoder](https://github.com/Esri/esri-leaflet-geocoder) - Allows for searching and zooming to locations using Esri's public geocoder.  A developer can configure to include other search sources or locators.  
