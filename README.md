@@ -1,5 +1,4 @@
 # esri-leaflet-cluster-starterkit
-Starter kit for quickly deploying an esri-leaflet map displaying a clustered featurelayer
 
 An excellent starter kit for those wishing to quickly deploy a lightning fast map displaying the contents of an ArcGIS for Server feature layer.  
 This build uses bower and npm to bundle a couple Leaflet plugins that enhance the application:
