@@ -31,7 +31,7 @@ This starter kit is deployment ready.  Follow the Getting Started instructions b
 
 3. Use `npm install` which downloads all dependencies (leaflet, plugins, jquery, bootstrap) and copies them to your src folder.
 
-4. Modify index.html and the main.js and app.css in src/app to build out your application.  At minimum, in app.js, lines 30 and 37 should contain the url of the feature layer you'd like diplayed, and line 58 should contain a list of fields that you do not want included in your feature popup.  
+4. Modify config.js to configure the application at minimum.  You can speficy feature service for display, app defaults, search widget behaviour, etc. etc.  config.js is well documenteed and contains examples to get you started.  To change behavior or look/feel of the application, modify index.html app.js, and app.css. 
 
 5. Use `npm run build` which builds and minifies your JavaScript and CSS, and copies necessary files to your dist folder. 
 
