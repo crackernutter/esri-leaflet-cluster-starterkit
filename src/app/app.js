@@ -81,7 +81,7 @@ require(['leaflet','jquery','esri-leaflet','config','esrileafletgeocoder','esril
 			feature = features;
 		}
 		var fieldsToSkip = app.fieldsNotInPopup;
-		var dateFields = []
+		var dateFields = app.dateFields;
 		var popup = $('<dl></dl>');
 		for (var key in feature.properties) {
 			if (fieldsToSkip.indexOf(key) == -1) {
