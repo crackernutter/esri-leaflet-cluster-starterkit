@@ -1,5 +1,29 @@
 "use strict";
-$(function () {
+require.config({
+	"baseUrl" :"../src/lib",
+	"paths":{
+		"leaflet": 'leaflet/leaflet',
+		"jquery": 'jquery/jquery',
+		"esri-leaflet": "esri-leaflet/esri-leaflet",
+		"esrileafletgeocoder": 'esri-leaflet-geocoder/esri-leaflet-geocoder',
+		"leafletcluster": 'leaflet-markercluster/leaflet.markercluster',
+		"esrileafletcluster": 'esri-leaflet-clustered-feature-layer/esri-leaflet-clustered-feature-layer',
+		"zoomhome": 'leaflet.zoomhome/leaflet.zoomhome',
+		"config":"../config"
+	},
+	"shim":{
+		"esrileafletgeocoder" : ["leaflet", "esri-leaflet"],
+		"zoomhome" : ["leaflet"],
+		"leafletcluster" : ["leaflet"],
+		"esrileaflet" : ["leaflet"],
+		"esrileafletcluster" :["leaflet", "esri-leaflet"]
+	},
+	"parseOnLoad": true
+});
+
+
+require(['leaflet','jquery','esri-leaflet','config','esrileafletgeocoder','esrileafletcluster','leafletcluster','zoomhome'], function(L, $, esri, app, Geocoding, Cluster){
+	
 	//extend L.LayerGroup
 	L.LayerGroup.prototype.getLayer = function (id) {
 		var layers = this._layers;
@@ -12,6 +36,7 @@ $(function () {
 	}
 	//main function
 	function init() {
+		console.log('initting');
 		var map = L.map('mapDiv', {
 				zoomControl : false
 			});
@@ -19,22 +44,22 @@ $(function () {
 			addLayers(map);
 		});
 		//this kicks off onload event
-		map.setView([38, -97], 5)
+		map.setView(app.center, app.zoom)
 	}
 	//add Layers
 	function addLayers(map) {
 		//basemap
-		L.esri.basemapLayer('DarkGray').addTo(map);
+		esri.basemapLayer(app.basemap).addTo(map);
 		//clusteredlayer
-		var clusteredLayer = new L.esri.Cluster.clusteredFeatureLayer({
-				url : 'https://igems.doi.gov/arcgis/rest/services/igems_haz/MapServer/0',
+		var clusteredLayer = new Cluster.clusteredFeatureLayer({
+				url : app.serviceUrl,
 				id : "clusteredLayer"
 			}).addTo(map);
 		clusteredLayer.bindPopup(function (features) {
 			return getPopupContent(features);
 		});
-		var unclusteredLayer = L.esri.featureLayer({
-				url : 'https://igems.doi.gov/arcgis/rest/services/igems_haz/MapServer/0',
+		var unclusteredLayer = esri.featureLayer({
+				url : app.serviceUrl,
 				id : "unclusteredLayer"
 			}).bindPopup(function (features) {
 				return getPopupContent(features);
@@ -55,7 +80,7 @@ $(function () {
 		} else {
 			feature = features;
 		}
-		var fieldsToSkip = ["OBJECTID", "Shape", "Units"];
+		var fieldsToSkip = app.fieldsNotInPopup;
 		var dateFields = []
 		var popup = $('<dl></dl>');
 		for (var key in feature.properties) {
@@ -94,16 +119,25 @@ $(function () {
 	}
 
 	function getLayerControl(layerGroup) {
-		var Gray = L.esri.basemapLayer("Gray");
-		var DarkGray = L.esri.basemapLayer("DarkGray");
-		var Oceans = L.esri.basemapLayer("Oceans");
-		var Topographic = L.esri.basemapLayer("Topographic");
-		var ShadedRelief = L.esri.basemapLayer("ShadedRelief");
+		var Streets = esri.basemapLayer('Streets');
+		var Topo = esri.basemapLayer("Topographic");
+		var Oceans = esri.basemapLayer("Oceans");
+		var NatGeo = esri.basemapLayer("NationalGeographic");
+		var Gray = esri.basemapLayer("Gray");
+		var DarkGray = esri.basemapLayer("DarkGray");
+		var Imagery = esri.basemapLayer('Imagery');
+		var Terrain = esri.basemapLayer("Terrain");
+		var ShadedRelief = esri.basemapLayer("ShadedRelief");
+		
 		var baseMaps = {
+			"Streets" :Streets,
+			"Topo" : Topo,
+			"Oceans" : Oceans,
+			"Nat Geo" :NatGeo,
 			"Grayscale" : Gray,
 			"Dark Gray" : DarkGray,
-			"Oceans" : Oceans,
-			"Topo" : Topographic,
+			"Imagery": Imagery,
+			"Terrain":Terrain,
 			"Relief" : ShadedRelief
 		};
 		var layerChoice = {
@@ -111,7 +145,7 @@ $(function () {
 		};
 
 		var layerControl = new L.control.layers(baseMaps, layerChoice, {
-				position : "topleft"
+				position : app.controlsPosition
 			});
 		return layerControl;
 
@@ -119,33 +153,26 @@ $(function () {
 
 	function getZoomHome() {
 		var zoomHome = L.Control.zoomHome({
-				position : "topleft"
+				position : app.controlsPosition
 			});
 		return zoomHome;
 	}
 
 	function getSearchControl() {
-
-		var arcgisOnline = L.esri.Geocoding.arcgisOnlineProvider();
+		var arcgisOnline = Geocoding.arcgisOnlineProvider();
+		var providers = [arcgisOnline];
 		
-		var extraProvider = new L.esri.Geocoding.FeatureLayerProvider({
-				url : 'https://igems.doi.gov/arcgis/rest/services/igems_haz/MapServer/0',
-				searchFields : ['Waterbody',"Status"],
-				label : 'Stream Gaugues',
-				bufferRadius : 0,
-				formatSuggestion : function (feature) {
-					return feature.properties.Waterbody + "-" + feature.properties.Status;
-				}
-			});
-
-		var searchControl = new L.esri.Geocoding.geosearch({
+		for (var i=0; i<app.searchProviders.length; i++){
+			providers.push(new Geocoding.FeatureLayerProvider(app.searchProviders[i]));
+		}
+		
+		var searchControl = new Geocoding.geosearch({
 				placeholder : "Search for locations",
 				useMapBounds : false,
-				position : "topleft",
-				providers : [arcgisOnline, extraProvider]
+				position : app.controlsPosition,
+				providers : providers
 			});
 		return searchControl;
-
 	}
 	init();
 });

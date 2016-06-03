@@ -21,13 +21,13 @@ grunt.initConfig({
 				banner: banner
 			},
 			files: {
-				'dist/bootstrap/css/bootstrap.css': ['src/bootstrap/css/bootstrap.css'],
-				'dist/leaflet/leaflet.css': ['src/leaflet/leaflet.css'],
-				'dist/esri-leaflet-geocoder/esri-leaflet-geocoder.css': ['src/esri-leaflet-geocoder/esri-leaflet-geocoder.css'],
-				'dist/leaflet-markercluster/MarkerCluster.Default.css': ['src/leaflet-markercluster/MarkerCluster.Default.css'],
-				'dist/leaflet-markercluster/MarkerCluster.css': ['src/leaflet-markercluster/MarkerCluster.css'],
-				'dist/leaflet.zoomhome/dist/leaflet.zoomhome.css': ['src/leaflet.zoomhome/dist/leaflet.zoomhome.css'],
-				'dist/font-awesome/css/font-awesome.css': ['src/font-awesome/css/font-awesome.css'],
+				'dist/lib/bootstrap/css/bootstrap.css': ['src/lib/bootstrap/css/bootstrap.css'],
+				'dist/lib/leaflet/leaflet.css': ['src/lib/leaflet/leaflet.css'],
+				'dist/lib/esri-leaflet-geocoder/esri-leaflet-geocoder.css': ['src/lib/esri-leaflet-geocoder/esri-leaflet-geocoder.css'],
+				'dist/lib/leaflet-markercluster/MarkerCluster.Default.css': ['src/lib/leaflet-markercluster/MarkerCluster.Default.css'],
+				'dist/lib/leaflet-markercluster/MarkerCluster.css': ['src/lib/leaflet-markercluster/MarkerCluster.css'],
+				'dist/lib/leaflet.zoomhome/leaflet.zoomhome.css': ['src/lib/leaflet.zoomhome/leaflet.zoomhome.css'],
+				'dist/lib/font-awesome/css/font-awesome.css': ['src/lib/font-awesome/css/font-awesome.css'],
 				'dist/app/app.css': ['src/app/app.css']
 			}
 		}
@@ -41,15 +41,14 @@ grunt.initConfig({
 		prod: {
 			files: {
 				'dist/app/app.js': ['src/app/app.js'],
-				'dist/leaflet/leaflet.js': ['src/leaflet/leaflet.js'],
-				'dist/jquery/jquery.js': ['src/jquery/jquery.js'],
-				'dist/bootstrap/js/bootstrap.js': ['src/bootstrap/js/bootstrap.js'],
-				'dist/esri-leaflet/esri-leaflet.js': ['src/esri-leaflet/esri-leaflet.js'],
-				'dist/esri-leaflet-geocoder/esri-leaflet-geocoder.js': ['src/esri-leaflet-geocoder/esri-leaflet-geocoder.js'],
-				'dist/leaflet-markercluster/leaflet.markercluster.js': ['src/leaflet-markercluster/leaflet.markercluster.js'],
-				'dist/esri-leaflet-clustered-feature-layer/esri-leaflet-clustered-feature-layer.js': ['src/esri-leaflet-clustered-feature-layer/esri-leaflet-clustered-feature-layer.js'],
-				'dist/leaflet.zoomhome/dist/leaflet.zoomhome.js': ['src/leaflet.zoomhome/dist/leaflet.zoomhome.js'],
-				
+				'dist/lib/leaflet/leaflet.js': ['src/lib/leaflet/leaflet.js'],
+				'dist/lib/jquery/jquery.js': ['src/lib/jquery/jquery.js'],
+				'dist/lib/esri-leaflet/esri-leaflet.js': ['src/lib/esri-leaflet/esri-leaflet.js'],
+				'dist/lib/esri-leaflet-geocoder/esri-leaflet-geocoder.js': ['src/lib/esri-leaflet-geocoder/esri-leaflet-geocoder.js'],
+				'dist/lib/leaflet-markercluster/leaflet.markercluster.js': ['src/lib/leaflet-markercluster/leaflet.markercluster.js'],
+				'dist/lib/esri-leaflet-clustered-feature-layer/esri-leaflet-clustered-feature-layer.js': ['src/lib/esri-leaflet-clustered-feature-layer/esri-leaflet-clustered-feature-layer.js'],
+				'dist/lib/leaflet.zoomhome/leaflet.zoomhome.js': ['src/lib/leaflet.zoomhome/leaflet.zoomhome.js'],
+				'dist/app/require.js':['src/app/require.js']
 			}
 		}
 	},
@@ -59,54 +58,66 @@ grunt.initConfig({
 			expand: true,
 			cwd: './node_modules/leaflet.markercluster/dist',
 			src: '**/*',
-			dest: './src/leaflet-markercluster/'
+			dest: './src/lib/leaflet-markercluster/'
 		},
 		esrileafletmarkerclusterdev: {
 			expand: true,
 			cwd: './node_modules/esri-leaflet-clustered-feature-layer/dist',
 			src: '**/*',
-			dest: './src/esri-leaflet-clustered-feature-layer/'
+			dest: './src/lib/esri-leaflet-clustered-feature-layer/'
 		},
 		esrileafletdev: {
 			expand: true,
 			cwd: './node_modules/esri-leaflet/dist',
 			src: '**/*',
-			dest: './src/esri-leaflet/'
+			dest: './src/lib/esri-leaflet/'
 		},
 		fontawesomedev: {
 			expand: true,
 			cwd: './node_modules/font-awesome',
 			src: '**/*',
-			dest: './src/font-awesome/'
+			dest: './src/lib/font-awesome/'
 		},
 		leafletdev: {
 			expand: true,
 			cwd: './node_modules/leaflet/dist',
 			src: '**/*',
-			dest: './src/leaflet/'
+			dest: './src/lib/leaflet/'
 		},
 		leafletgeocoderdev: {
 			expand: true,
 			cwd: './node_modules/esri-leaflet-geocoder/dist',
 			src: '**/*',
-			dest: './src/esri-leaflet-geocoder/'
+			dest: './src/lib/esri-leaflet-geocoder/'
 		},
 		jquerydev: {
 			expand: true,
 			cwd: './node_modules/jquery/dist',
 			src: '**/*',
-			dest: './src/jquery/'
+			dest: './src/lib/jquery/'
 		},
 		bootstrapdev: {
 			expand: true,
 			cwd: './node_modules/bootstrap/dist',
 			src: '**/*',
-			dest: './src/bootstrap/'
+			dest: './src/lib/bootstrap/'
 		},
 		layerimagedev: {
 			expand: true,
 			src: './layers.png',
-			dest: './src/leaflet/images/'
+			dest: './src/lib/leaflet/images/'
+		},
+		requiredev:{
+			expand: true,
+			flatten: true,
+			src: './node_modules/requirejs/require.js',
+			dest: './src/app/'
+		},
+		zoomhomedev:{
+			expand: true,
+			cwd: './src/leaflet.zoomhome/dist',
+			src: '**/*',
+			dest: './src/lib/leaflet.zoomhome/'
 		},
 		//production copy
 		main: {
@@ -120,32 +131,42 @@ grunt.initConfig({
 		},
 		leafletgeocoderprod: {
 			expand: true,
-			cwd: './src/esri-leaflet-geocoder/img',
+			cwd: './src/lib/esri-leaflet-geocoder/img',
 			src: '**/*',
-			dest: './dist/esri-leaflet-geocoder/img'
+			dest: './dist/lib/esri-leaflet-geocoder/img'
 		},
 		leafletprod: {
 			expand: true,
-			cwd: './src/leaflet/images',
+			cwd: './src/lib/leaflet/images',
 			src: '**/*',
-			dest: './dist/leaflet/images'
+			dest: './dist/lib/leaflet/images'
 		},
 		fontawesomeprod: {
 			expand: true,
-			cwd: './src/font-awesome/fonts',
+			cwd: './src/lib/font-awesome/fonts',
 			src: '**/*',
-			dest: './dist/font-awesome/fonts'
+			dest: './dist/lib/font-awesome/fonts'
 		},
+		configprod:{
+			expand: true,
+			flatten: true,
+			src: './src/config.js',
+			dest: './dist/'
+		}
 	},
 	//clean
 	clean: {
 		build: {
 			src: ['dist/']
+		},
+		zoomhome:
+		{
+			src: ['src/leaflet/','src/leaflet.zoomhome/']
 		}
 	}
 });
 	// Default task.
-	grunt.registerTask('devbuild', ['copy:leafletmarkerclusterdev','copy:esrileafletmarkerclusterdev','copy:esrileafletdev','copy:fontawesomedev','copy:leafletdev','copy:leafletgeocoderdev','copy:jquerydev','copy:bootstrapdev', 'copy:layerimagedev']);
-	grunt.registerTask('default', ['clean:build', 'cssmin', 'uglify','copy:fontawesomeprod','copy:leafletprod','copy:main','copy:leafletgeocoderprod']);
+	grunt.registerTask('devbuild', ['copy:leafletmarkerclusterdev','copy:esrileafletmarkerclusterdev','copy:esrileafletdev','copy:fontawesomedev','copy:leafletdev','copy:leafletgeocoderdev','copy:jquerydev','copy:bootstrapdev', 'copy:layerimagedev', 'copy:requiredev','copy:zoomhomedev', 'clean:zoomhome']);
+	grunt.registerTask('default', ['clean:build', 'cssmin', 'uglify','copy:fontawesomeprod','copy:leafletprod','copy:main','copy:leafletgeocoderprod', 'copy:configprod']);
 	
 };
