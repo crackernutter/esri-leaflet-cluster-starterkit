@@ -16,7 +16,8 @@
     "bower",
     "zoomhome",
     "geocoder",
-    "marker cluster"
+    "marker cluster",
+    "requirejs"
   ],
   "author": "Jay Gregory",
   "license": "ISC",
