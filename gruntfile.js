@@ -156,7 +156,7 @@ grunt.initConfig({
 	},
 	//clean
 	clean: {
-		build: {
+		dist: {
 			src: ['dist/']
 		},
 		zoomhome:
@@ -167,6 +167,6 @@ grunt.initConfig({
 });
 	// Default task.
 	grunt.registerTask('devbuild', ['copy:leafletmarkerclusterdev','copy:esrileafletmarkerclusterdev','copy:esrileafletdev','copy:fontawesomedev','copy:leafletdev','copy:leafletgeocoderdev','copy:jquerydev','copy:bootstrapdev', 'copy:layerimagedev', 'copy:requiredev','copy:zoomhomedev', 'clean:zoomhome']);
-	grunt.registerTask('default', ['clean:build', 'cssmin', 'uglify','copy:fontawesomeprod','copy:leafletprod','copy:main','copy:leafletgeocoderprod', 'copy:configprod']);
+	grunt.registerTask('default', ['clean:dist', 'cssmin', 'uglify','copy:fontawesomeprod','copy:leafletprod','copy:main','copy:leafletgeocoderprod', 'copy:configprod']);
 	
 };
