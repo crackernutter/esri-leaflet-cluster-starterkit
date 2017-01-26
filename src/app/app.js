@@ -24,7 +24,7 @@ require.config({
 
 require(['leaflet','jquery','esri-leaflet','config','esrileafletgeocoder','esrileafletcluster','leafletcluster','zoomhome'], function(L, $, esri, app, Geocoding, Cluster){
 	
-	//extend L.LayerGroup
+	//extend L.LayerGroup in leaflet
 	L.LayerGroup.prototype.getLayer = function (id) {
 		var layers = this._layers;
 		var layer;
@@ -74,18 +74,13 @@ require(['leaflet','jquery','esri-leaflet','config','esrileafletgeocoder','esril
 	}
 	function getPopupContent(features) {
 		//accounts for differences in layer properties
-		var feature;
-		if ('feature' in features) {
-			feature = features.feature;
-		} else {
-			feature = features;
-		}
-		var fieldsToSkip = app.fieldsNotInPopup;
+		var feature = 'feature' in features ? features.feature : features
+		var fields = app.popupFields;
 		var dateFields = app.dateFields;
 		var popup = $('<dl></dl>');
 		for (var key in feature.properties) {
-			if (fieldsToSkip.indexOf(key) == -1) {
-				popup.append($('<dt></dt>').text(key));
+			if (fields.indexOf(key) != -1) {
+				popup.append($('<dt></dt>').text(key.toUpperCase()));
 				if (dateFields.indexOf(key) > -1) {
 					popup.append($('<dd></dd>').text(new Date(feature.properties[key])));
 				} else {

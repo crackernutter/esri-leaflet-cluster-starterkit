@@ -6,10 +6,10 @@ define([], function(){
 		"serviceUrl" : "https://igems.doi.gov/arcgis/rest/services/igems_haz/MapServer/0",
 ////////////////////////////////////////////////////////////////////////////////////////////
 ///////fieldsNotInPopup: list of fields from REST endpoint to omit from popup////////////////////
-		"fieldsNotInPopup" : ["OBJECTID", "Shape", "Units"],
+		"popupFields" : ["status", "waterbody","stage","obstime","id","link"],
 ////////////////////////////////////////////////////////////////////////////////////////////
 ///////dateFields: list of fields from REST endpoint that should be formatted as a date/////
-		"dateFields" : [],		
+		"dateFields" : ["obstime"],		
 ////////////////////////////////////////////////////////////////////////////////////////////
 ///////center: initial center point of app//////////////////////////////////////////////////
 		"center":[38, -97],
@@ -30,11 +30,11 @@ define([], function(){
 	"searchProviders":[
 			{
 				url : 'https://igems.doi.gov/arcgis/rest/services/igems_haz/MapServer/0',
-				searchFields : ['Waterbody',"Status"],
+				searchFields : ['waterbody',"status"],
 				label : 'Stream Gaugues',
 				bufferRadius : 0,
 				formatSuggestion : function (feature) {
-					return feature.properties.Waterbody + "-" + feature.properties.Status;
+					return feature.properties.waterbody + "-" + feature.properties.status;
 				}
 			}
 //////////////////////////add additional providers here////////////////////////////////////
